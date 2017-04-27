@@ -69,6 +69,8 @@ public class JrdBottomBarContainer extends RelativeLayout {
         mBarContainerView.setLayoutParams(params);
         mBarContainerView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         addView(mBarContainerView);
+
+        //
     }
 
 
@@ -82,60 +84,16 @@ public class JrdBottomBarContainer extends RelativeLayout {
             return;
         }
         for(int i = 0; i < count; i++){
-            JrdTab jrdTab = new JrdTab(adapter.BarText[i], adapter.BarImage[i]);
+            JrdTab jrdTab = new JrdTab(adapter.BarText[i], adapter.BarImage[i], adapter.BarSelImage[i]);
             jrdTab.setTabIndex(i);
-            addTab(jrdTab);
+            //add函数放到JrdTab中去
+            //addTab(jrdTab);
         }
 
         mViewPager.setAdapter(adapter);
     }
 
-    private void addTab(final JrdTab tab){
-        /*构建tab的布局*/
-        LinearLayout tabLinearLayout = new LinearLayout(mContext);
-        tabLinearLayout.setOrientation(LinearLayout.VERTICAL);
-        //tabLinearLayout.setWeightSum(1);
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
-        params.weight = 1;
-        tabLinearLayout.setLayoutParams(params);
-        mBarContainerView.addView(tabLinearLayout);
-
-        /*
-        * 添加Image和Text
-        * */
-        ImageView imageView = new ImageView(mContext);
-        int des = (int)JrdSystemUtil.getDesity();
-        LinearLayout.LayoutParams imageParent = new LinearLayout.LayoutParams(30*des, 30*des);
-        imageParent.topMargin = 5*des;
-        imageParent.gravity= Gravity.CENTER_HORIZONTAL;
-        imageView.setLayoutParams(imageParent);
-        imageView.setImageResource(tab.getTabImage());
-        tabLinearLayout.addView(imageView);
-
-        /*
-        * 添加Text
-        * */
-        TextView textView = new TextView(mContext);
-        LinearLayout.LayoutParams textParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        textParam.gravity= Gravity.CENTER_HORIZONTAL;
-        textParam.topMargin= 2*des;
-        textView.setLayoutParams(textParam);
-        textView.setTextSize(16);
-        textView.setText(tab.getTabText());
-        tabLinearLayout.addView(textView);
-        tabLinearLayout.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /*
-                *  这里添加回调
-                * */
-                if(mJrdBottomBarListener != null){
-                    mJrdBottomBarListener.onClick(tab.getTabIndex());
-                }
-            }
-        });
-    }
 
     public void setBottomBarListener(JrdBottomBarListener jrdBottomBarListener){
         mJrdBottomBarListener = jrdBottomBarListener;

@@ -12,14 +12,16 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class JrdBottomBarAdapter extends FragmentPagerAdapter{
     public String[] BarText;
     public int[]  BarImage;
+    public int[] BarSelImage;
     public Fragment[] BarFragments;
 
-    public JrdBottomBarAdapter(FragmentManager fm, String[] text, int[] barImage, Fragment[] fragments){
+    public JrdBottomBarAdapter(FragmentManager fm, String[] text, int[] barImage, int[] barSelImage, Fragment[] fragments){
         super(fm);
 
         BarText = text;
         BarImage = barImage;
         BarFragments = fragments;
+        BarSelImage = barSelImage;
     }
 
     public void setBarImage(int[] barImage) {

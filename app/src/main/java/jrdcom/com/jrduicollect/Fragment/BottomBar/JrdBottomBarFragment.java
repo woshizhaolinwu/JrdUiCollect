@@ -19,7 +19,7 @@ public class JrdBottomBarFragment extends BaseFragment {
     public static final String TAG = JrdBottomBarFragment.class.getSimpleName();
     String[] barText = {"test1","test2","test3","test4"};
     int[] barImage = {R.mipmap.icon_app, R.mipmap.icon_main, R.mipmap.icon_mine, R.mipmap.icon_work};
-
+    int[] barSelImage = {R.mipmap.icon_app_selected, R.mipmap.icon_main_selected, R.mipmap.icon_mine_selected, R.mipmap.icon_work_selected};
     @Override
     protected int getLayoutid() {
         return R.layout.bottombar_layout;
@@ -30,7 +30,7 @@ public class JrdBottomBarFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         JrdBottomBarContainer jrdBottomBarContainer = new JrdBottomBarContainer(getActivity());
         Fragment fragment[] = {new JrdTestFragment(), new JrdTestFragment(), new JrdTestFragment(), new JrdTestFragment()};
-        JrdBottomBarAdapter jrdBottomBarAdapter = new JrdBottomBarAdapter(((AppCompatActivity)getActivity()).getSupportFragmentManager(),barText, barImage, fragment);
+        JrdBottomBarAdapter jrdBottomBarAdapter = new JrdBottomBarAdapter(((AppCompatActivity)getActivity()).getSupportFragmentManager(),barText, barImage, barSelImage, fragment);
         jrdBottomBarContainer.setAdapter(jrdBottomBarAdapter);
         return jrdBottomBarContainer.getRootView();
     }
