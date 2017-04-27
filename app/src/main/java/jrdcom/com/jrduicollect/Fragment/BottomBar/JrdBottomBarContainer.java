@@ -24,6 +24,7 @@ public class JrdBottomBarContainer extends RelativeLayout {
     private Context mContext;
     private LinearLayout mBarContainerView;
     private ViewPager mViewPager;
+    private JrdBottomBarListener mJrdBottomBarListener;
     public JrdBottomBarContainer(Context context){
         super(context);
         mContext = context;
@@ -82,13 +83,14 @@ public class JrdBottomBarContainer extends RelativeLayout {
         }
         for(int i = 0; i < count; i++){
             JrdTab jrdTab = new JrdTab(adapter.BarText[i], adapter.BarImage[i]);
+            jrdTab.setTabIndex(i);
             addTab(jrdTab);
         }
 
         mViewPager.setAdapter(adapter);
     }
 
-    private void addTab(JrdTab tab){
+    private void addTab(final JrdTab tab){
         /*构建tab的布局*/
         LinearLayout tabLinearLayout = new LinearLayout(mContext);
         tabLinearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -122,9 +124,26 @@ public class JrdBottomBarContainer extends RelativeLayout {
         textView.setTextSize(16);
         textView.setText(tab.getTabText());
         tabLinearLayout.addView(textView);
-        
+        tabLinearLayout.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                *  这里添加回调
+                * */
+                if(mJrdBottomBarListener != null){
+                    mJrdBottomBarListener.onClick(tab.getTabIndex());
+                }
+            }
+        });
     }
 
+    public void setBottomBarListener(JrdBottomBarListener jrdBottomBarListener){
+        mJrdBottomBarListener = jrdBottomBarListener;
+    }
+
+    public interface JrdBottomBarListener{
+        public void onClick(int position);
+    }
 
 
 }

@@ -8,6 +8,7 @@ public class JrdTab {
 
     private String tabText;
     private int tabImage;
+    private int tabIndex;
 
     public JrdTab(String text, int image){
         tabText = text;
@@ -27,5 +28,13 @@ public class JrdTab {
 
     public String getTabText() {
         return tabText;
+    }
+
+    public void setTabIndex(int tabIndex) {
+        this.tabIndex = tabIndex;
+    }
+
+    public int getTabIndex() {
+        return tabIndex;
     }
 }
