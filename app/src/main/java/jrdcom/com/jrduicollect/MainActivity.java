@@ -3,6 +3,7 @@ package jrdcom.com.jrduicollect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import jrdcom.com.jrduicollect.Fragment.BottomBar.JrdBottomBarFragment;
 import jrdcom.com.jrduicollect.Fragment.JrdListFragment;
 import jrdcom.com.jrduicollect.Util.JrdUtil;
 
@@ -43,7 +44,10 @@ public class MainActivity extends BaseActivity implements JrdListFragment.ListFr
         {
             case JrdUtil.BOTTOM_BAR:
                 //进入Bottom bar
-
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.main_screen, new JrdBottomBarFragment())
+                        .addToBackStack(JrdBottomBarFragment.TAG)
+                        .commit();
                 break;
         }
 

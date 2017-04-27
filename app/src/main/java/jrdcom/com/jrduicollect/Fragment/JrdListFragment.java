@@ -52,7 +52,6 @@ public class JrdListFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
         if(mListFragmentListener != null){
             mListFragmentListener.onClick(position);
-
         }
     }
 }
