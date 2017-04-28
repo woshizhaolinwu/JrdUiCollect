@@ -1,0 +1,5 @@
+/*文件列表说明*/
+JrdBottomBarFragment, JrdTestFragment是作为测试使用的文件
+JrdBottomBarAdapter是适配文件
+JrdBottomBarContainer是主控件
+JrdTab是Tab主体

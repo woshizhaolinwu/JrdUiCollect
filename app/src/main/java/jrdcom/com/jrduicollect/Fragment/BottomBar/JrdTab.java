@@ -16,17 +16,33 @@ import jrdcom.com.jrduicollect.JrdSystemUtil;
 
 public class JrdTab {
 
-    private String tabText;
-    private int tabImage;
-    private int tabIndex;
-    private int tabSelImage;
+    private String tabText;                 //tab的文字
+    private int tabImage;                   //tab的Image
+    private int tabIndex;                   //tab的Index
+    private int tabSelImage;                //tab取消高亮的图片
     private ViewGroup mRootView;
+    private boolean tabIsSelect;            //tab是否被高亮
+    private JrdTabClickListener jrdTabClickListener;    //tab点击回调
+    /*
+    * 定义回调
+    * */
+    public interface JrdTabClickListener{
+        void onClick(int index);
+    }
 
+    /*
+    * 初始化
+    * */
     public JrdTab(String text, int image, int selImage){
         tabText = text;
         tabImage = image;
         tabSelImage = selImage;
+        tabIsSelect = false;
     }
+
+    /*
+    * set 和 get
+    * */
     public void setTabImage(int tabImage) {
         this.tabImage = tabImage;
     }
@@ -51,10 +67,17 @@ public class JrdTab {
         return tabIndex;
     }
 
+    public boolean getTabIsSelect(){
+        return tabIsSelect;
+    }
+
     public ViewGroup getRootView(){
         return mRootView;
     }
 
+    /*
+    * 添加JrdTab
+    * */
     public void addTab(Context context, ViewGroup ContainerView){
         /*构建tab的布局*/
         mRootView = new LinearLayout(context);
@@ -98,13 +121,34 @@ public class JrdTab {
                 /*if(mJrdBottomBarListener != null){
                     mJrdBottomBarListener.onClick(tab.getTabIndex());
                 }*/
-                selectTab();
+                //selectTab();
+                if(jrdTabClickListener != null){
+                    jrdTabClickListener.onClick(tabIndex);
+                }
             }
         });
     }
 
-    private void selectTab(){
+    public void setJrdTabClickListener(JrdTabClickListener tabClickListener)
+    {
+        jrdTabClickListener = tabClickListener;
+    }
+
+    /*
+    * 高亮tab
+    * */
+    public void selectTab(){
+        tabIsSelect = true;
         ImageView imageView = (ImageView)mRootView.getChildAt(0);
         imageView.setImageResource(tabSelImage);
+    }
+
+    /*
+    * 取消高亮
+    * */
+    public void unSelectTab(){
+        tabIsSelect = false;
+        ImageView imageView = (ImageView)mRootView.getChildAt(0);
+        imageView.setImageResource(tabImage);
     }
 }

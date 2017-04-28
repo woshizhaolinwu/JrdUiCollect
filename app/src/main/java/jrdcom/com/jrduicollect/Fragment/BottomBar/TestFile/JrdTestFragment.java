@@ -1,4 +1,4 @@
-package jrdcom.com.jrduicollect.Fragment.BottomBar;
+package jrdcom.com.jrduicollect.Fragment.BottomBar.TestFile;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

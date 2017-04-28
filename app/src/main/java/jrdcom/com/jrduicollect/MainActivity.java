@@ -1,9 +1,8 @@
 package jrdcom.com.jrduicollect;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import jrdcom.com.jrduicollect.Fragment.BottomBar.JrdBottomBarFragment;
+import jrdcom.com.jrduicollect.Fragment.BottomBar.TestFile.JrdBottomBarFragment;
 import jrdcom.com.jrduicollect.Fragment.JrdListFragment;
 import jrdcom.com.jrduicollect.Util.JrdUtil;
 

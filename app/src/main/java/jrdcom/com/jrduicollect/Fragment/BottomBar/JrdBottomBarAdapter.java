@@ -4,36 +4,29 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import java.util.List;
+
 /**
  * Created by longcheng on 2017/4/27.
  * 这个Adapter集合了FragmentViewpage Adapter
  */
 
 public class JrdBottomBarAdapter extends FragmentPagerAdapter{
-    public String[] BarText;
-    public int[]  BarImage;
-    public int[] BarSelImage;
+    private List<JrdTabItem> jrdTabItems;
     public Fragment[] BarFragments;
 
-    public JrdBottomBarAdapter(FragmentManager fm, String[] text, int[] barImage, int[] barSelImage, Fragment[] fragments){
+    public JrdBottomBarAdapter(FragmentManager fm, List<JrdTabItem> itemList, Fragment[] fragments){
         super(fm);
-
-        BarText = text;
-        BarImage = barImage;
         BarFragments = fragments;
-        BarSelImage = barSelImage;
+        jrdTabItems = itemList;
     }
 
-    public void setBarImage(int[] barImage) {
-        BarImage = barImage;
-    }
-
-    public void setBarText(String[] barText) {
-        BarText = barText;
+    /*TabItem的适配*/
+    public List<JrdTabItem> getJrdTabItems() {
+        return jrdTabItems;
     }
 
     /*FragmentPager的适配*/
-
     @Override
     public Fragment getItem(int position) {
         return BarFragments[position];
